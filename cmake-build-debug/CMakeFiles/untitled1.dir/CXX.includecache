@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/User/CLionProjects/untitled1/MyException.h
+iostream
+-
+string
+-
+exception
+-
+
+C:/Users/User/CLionProjects/untitled1/Product.cpp
+iostream
+-
+string.h
+-
+Product.h
+C:/Users/User/CLionProjects/untitled1/Product.h
+MyException.h
+C:/Users/User/CLionProjects/untitled1/MyException.h
+
+C:/Users/User/CLionProjects/untitled1/Product.h
+
