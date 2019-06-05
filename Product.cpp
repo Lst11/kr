@@ -45,27 +45,38 @@ double Product::getPrice() {
 }
 
 void Product::setData() {
-    bool sucess = 0;
-   // do {
-        try {
-            sucess = 0;
-            cout << "Input the name: ";
-            char *temp = new char[255]; // на время выделяется память (с запасом) под строку
-            cin.getline(temp, 255); // чтение строки
-            name = new char[strlen(temp) + 1]; // выделяется память под размер введённой строки
-            strcpy(name, temp); // копируется строка в новую память
-            delete[] temp; // ненужная память освобождается
 
+    bool success = false;
+    while (!success) {
+        success = true;
+        cout << "\nInput the name:";
+        char *temp = new char[255]; // на время выделяется память (с запасом) под строку
+        cin.getline(temp, 255); // чтение строки
+        name = new char[strlen(temp) + 1]; // выделяется память под размер введённой строки
+        strcpy(name, temp); // копируется строка в новую память
+        delete[] temp; // ненужная память освобождается
+
+        try {
             cout << "Input the quantity:";
-            cin >> quantity;
-            cout << "Input the price: ";
-            cin >> price;
+            rewind(stdin);
+            if (!scanf("%d", &quantity)) {
+                success = false;
+                rewind(stdin);
+                throw MyException("Input error! Try again.");
+            }
+
+            cout << "Input the price:";
+            rewind(stdin);
+            if (!scanf("%lf", &price)) {
+                success = false;
+                rewind(stdin);
+                throw MyException("Input error! Try again.");
+            }
             cout << endl;
-        } catch (MyException e) {
-            e.setNote("Input failed");
+        }
+        catch (MyException e) {
             e.show();
-            sucess = 1;
-       // }while (sucess == 1);
+        }
     }
 }
 
