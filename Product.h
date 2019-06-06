@@ -1,7 +1,3 @@
-//
-// Created by Lena on 05.06.2019.
-//
-
 #ifndef UNTITLED1_PRODUCT_H
 #define UNTITLED1_PRODUCT_H
 
@@ -17,7 +13,9 @@ public:
 
     Product();
 
-    Product(Product &);
+    Product(char *, int, double);
+
+    Product(const Product &);
 
     virtual ~Product();
 
@@ -31,11 +29,15 @@ public:
 
     void show();
 
-    char *getName();
+    char *getName() const;
 
-    unsigned getQuantity();
+    unsigned getQuantity() const;
 
-    double getPrice();
+    double getPrice() const;
+
+    friend const bool operator<(const Product &, const Product &);
+
+    Product &operator=(const Product &);
 };
 
 

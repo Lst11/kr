@@ -1,6 +1,3 @@
-//
-// Created by Lena on 05.06.2019.
-//
 #include <iostream>
 #include <string.h>
 #include "Product.h"
@@ -14,17 +11,26 @@ Product::Product() {
     price = 0.0;
 }
 
-Product::Product(Product &a) {
-    name = a.getName();
-    quantity = a.getQuantity();
-    price = a.getPrice();
+Product::Product(char *name, int quantity, double price) {
+    this->name = name;
+    this->quantity = quantity;
+    this->price = price;
+}
+
+Product::Product(const Product &product) {
+    quantity = product.getQuantity();
+    price = product.getPrice();
+    if (product.name) {
+        name = new char[strlen(product.name) + 1];
+        strcpy(name, product.name);
+    }
 }
 
 void Product::setName(char *name) {
     this->name = name;
 }
 
-char *Product::getName() {
+char *Product::getName() const {
     return name;
 }
 
@@ -32,7 +38,7 @@ void Product::setQuantity(unsigned quantity) {
     this->quantity = quantity;
 }
 
-unsigned Product::getQuantity() {
+unsigned Product::getQuantity() const {
     return quantity;
 }
 
@@ -40,12 +46,12 @@ void Product::setPrice(double price) {
     this->price = price;
 }
 
-double Product::getPrice() {
+double Product::getPrice() const {
     return price;
 }
 
 void Product::setData() {
-
+    rewind(stdin);
     bool success = false;
     while (!success) {
         success = true;
@@ -89,3 +95,25 @@ void Product::show() {
         cout << "Product:\nname - " << name << ";\nquantity - " << quantity << ";\nprice - " << price << ";\n" << endl;
     } else cout << "Product:\nname - NO NAME;\nquantity - " << quantity << ";\nprice - " << price << ";\n" << endl;
 }
+
+Product &Product::operator=(const Product &product) {
+
+    quantity = product.quantity;
+    price = product.price;
+    if (name) delete name;
+    name = new char[strlen(product.name) + 1];
+    strcpy(name, product.name);
+    return *this;
+}
+
+const bool operator<(const Product &first, const Product &second) {
+    int compareResult = 0;
+    char *firstName = first.getName();
+    char *secondName = second.getName();
+
+    if (firstName && secondName) {
+        compareResult = strcmp(firstName, secondName);
+    }
+    return compareResult <= 0;
+}
+
