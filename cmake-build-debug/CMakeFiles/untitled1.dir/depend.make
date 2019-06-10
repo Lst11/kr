@@ -8,6 +8,9 @@ CMakeFiles/untitled1.dir/Product.cpp.obj: ../MyException.h
 CMakeFiles/untitled1.dir/Product.cpp.obj: ../Product.cpp
 CMakeFiles/untitled1.dir/Product.cpp.obj: ../Product.h
 
+CMakeFiles/untitled1.dir/main.cpp.obj: ../Electronic.h
+CMakeFiles/untitled1.dir/main.cpp.obj: ../Nonfood.h
+CMakeFiles/untitled1.dir/main.cpp.obj: ../PlayStation.h
 CMakeFiles/untitled1.dir/main.cpp.obj: ../Product.h
 CMakeFiles/untitled1.dir/main.cpp.obj: ../main.cpp
 

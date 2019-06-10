@@ -55,7 +55,7 @@ void Product::setData() {
     bool success = false;
     while (!success) {
         success = true;
-        cout << "\nInput the name:";
+        cout << "Input the name:";
         char *temp = new char[255]; // на время выделяется память (с запасом) под строку
         cin.getline(temp, 255); // чтение строки
         name = new char[strlen(temp) + 1]; // выделяется память под размер введённой строки
@@ -70,7 +70,6 @@ void Product::setData() {
                 rewind(stdin);
                 throw MyException("Input error! Try again.");
             }
-
             cout << "Input the price:";
             rewind(stdin);
             if (!scanf("%lf", &price)) {
@@ -87,17 +86,10 @@ void Product::setData() {
 }
 
 Product::~Product() {
-    cout << "destructor Product\n";
-}
-
-void Product::show() {
-    if (name) {
-        cout << "Product:\nname - " << name << ";\nquantity - " << quantity << ";\nprice - " << price << ";\n" << endl;
-    } else cout << "Product:\nname - NO NAME;\nquantity - " << quantity << ";\nprice - " << price << ";\n" << endl;
+    cout << "Destructor for Product\n";
 }
 
 Product &Product::operator=(const Product &product) {
-
     quantity = product.quantity;
     price = product.price;
     if (name) delete name;
@@ -116,4 +108,3 @@ const bool operator<(const Product &first, const Product &second) {
     }
     return compareResult <= 0;
 }
-

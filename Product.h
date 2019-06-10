@@ -27,7 +27,7 @@ public:
 
     void setData();
 
-    void show();
+    virtual void show() = 0;
 
     char *getName() const;
 
